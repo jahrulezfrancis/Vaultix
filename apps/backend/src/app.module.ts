@@ -19,6 +19,8 @@ import { NotificationsModule } from './notifications/notifications.module';
 import { EscrowModule } from './modules/escrow/escrow.module';
 import { ApiKeyModule } from './api-key/api-key.module';
 import { StellarEventModule } from './modules/stellar/stellar-event.module';
+import { Notification } from './notifications/entities/notification.entity';
+import { NotificationPreference } from './notifications/entities/notification-preference.entity';
 
 @Module({
   imports: [
@@ -33,7 +35,17 @@ import { StellarEventModule } from './modules/stellar/stellar-event.module';
           'DATABASE_PATH',
           './data/vaultix.db',
         ),
-        entities: [User, RefreshToken, Escrow, Party, Condition, EscrowEvent, Dispute],
+        entities: [
+          User,
+          RefreshToken,
+          Escrow,
+          Party,
+          Condition,
+          EscrowEvent,
+          Dispute,
+          Notification,
+          NotificationPreference,
+        ],
         synchronize: configService.get<string>('NODE_ENV') !== 'production',
       }),
       inject: [ConfigService],
